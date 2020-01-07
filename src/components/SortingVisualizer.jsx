@@ -51,6 +51,36 @@ export class SortingVisualizer extends Component {
     this.resetColor();
   };
 
+  // insertionSort() {
+  //   // const [animations1, animations2] = insertionSortAnimations(
+  //   //   this.state.array
+  //   // );
+  //   // console.log(animations1);
+  //   // console.log(animations2);
+  //   const animations = insertionSortAnimations(this.state.array);
+
+  //   // console.log(animations);
+  //   for (let i = 0; i < animations.length; i++) {
+  //     const arrayBars = document.getElementsByClassName("array-bar");
+  //     const isColorChange = i % 3 !== 2;
+  //     if (isColorChange) {
+  //       const [barOneIdx, barTwoIdx] = animations[i];
+  //       const barOneStyle = arrayBars[barOneIdx].style;
+  //       const barTwoStyle = arrayBars[barTwoIdx].style;
+  //       const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+  //       setTimeout(() => {
+  //         barOneStyle.backgroundColor = color;
+  //         barTwoStyle.backgroundColor = color;
+  //       }, i * ANIMATION_SPEED_MS);
+  //     } else {
+  //       setTimeout(() => {
+  //         const [barOneIdx, newHeight] = animations[i];
+  //         const barOneStyle = arrayBars[barOneIdx].style;
+  //         barOneStyle.height = `${newHeight}px`;
+  //       }, i * ANIMATION_SPEED_MS);
+  //     }
+  //   }
+  // }
   mergeSort() {
     const animations = getMergeSortAnimations(this.state.array);
     // console.log(this.state.array);
@@ -94,6 +124,18 @@ export class SortingVisualizer extends Component {
       // }, ANIMATION_SPEED_MS * animations.length + 1 + i * 12);
     }
   }
+
+  // finalAnimation() {
+  //   this.resetColor();
+  //   const sortedArrayBars = document.getElementsByClassName("array-bar");
+  //   for (let k = 0; k < sortedArrayBars.length; k++) {
+  //     const newBarOneStyle = sortedArrayBars[k].style;
+  //     setTimeout(() => {
+  //       newBarOneStyle.backgroundColor = FINAL_COLOR;
+  //       // console.log("hello", k);
+  //     }, k * ANIMATION_SPEED_MS);
+  //   }
+  // }
 
   bubbleSort() {
     const animations = bubbleSortAnimations(this.state.array);
