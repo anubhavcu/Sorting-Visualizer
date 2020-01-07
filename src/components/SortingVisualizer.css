@@ -1,0 +1,26 @@
+.array-container {
+  position: absolute;
+  left: 100px;
+  top: 20px;
+  background-color: ghostwhite;
+}
+.array-bar {
+  width: 12px;
+  /* width: 6px; */
+  display: inline-block;
+  margin: 0 1px;
+}
+/* .buttons {
+  /* position: relative; */
+/* t r b l */
+/* padding: 0px 50px 10px 250px;
+  margin-left: 150px;
+  position: absolute;
+  bottom: 0px; */
+
+/* position: absolute;
+  bottom: 0px;
+  right: 25%;
+  left: 40%;
+  margin-left: -150px; */
+/* }  */
