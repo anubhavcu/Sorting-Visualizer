@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSort";
 import { bubbleSortAnimations } from "../sortingAlgorithms/bubbleSort";
-import { insertionSortAnimations } from "../sortingAlgorithms/insertionSort";
+// import { insertionSortAnimations } from "../sortingAlgorithms/insertionSort";
 import "./SortingVisualizer.css";
 
-// const numberOfElementsInArray = 175;
 const numberOfElementsInArray = 100;
 
 const ANIMATION_SPEED_MS = 10;
-// Change this value for the speed of the animations.
 
-// Change this value for the number of bars (value) in the array.
-// const NUMBER_OF_ARRAY_BARS = 310;
-
-// This is the main color of the array bars.
 const PRIMARY_COLOR = "green";
 
-// This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = "red";
 
 const FINAL_COLOR = "pink";
@@ -220,42 +213,42 @@ export class SortingVisualizer extends Component {
         >
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.genRandomArray()}
           >
             Generate New Array
           </button>
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.mergeSort()}
           >
             Merge Sort
           </button>
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.bubbleSort()}
           >
             Bubble Sort
           </button>
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.quickSort()}
           >
             Quick Sort
           </button>
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.genRandomArray()}
           >
             Heap Sort
           </button>
           <button
             className="button"
-            className="btn btn-primary btn-sm m-2"
+            // className="btn btn-primary btn-sm m-2"
             onClick={() => this.genRandomArray()}
           >
             Insertion Sort
