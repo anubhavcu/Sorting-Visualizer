@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSort";
 import { bubbleSortAnimations } from "../sortingAlgorithms/bubbleSort";
+import { quickSortAnimations } from "../sortingAlgorithms/quickSort";
 // import { insertionSortAnimations } from "../sortingAlgorithms/insertionSort";
 import "./SortingVisualizer.css";
 
@@ -134,7 +135,6 @@ export class SortingVisualizer extends Component {
     const animations = bubbleSortAnimations(this.state.array);
 
     // console.log(animations);
-
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
       if (animations[i] !== -1) {
@@ -152,6 +152,7 @@ export class SortingVisualizer extends Component {
           // barTwoStyle.backgroundColor = INITIAL_COLOR;
         }, i * ANIMATION_SPEED_MS + 10);
       } else {
+        //swapping the values
         const [indexOne, indexTwo, barOneHeight, barTwoHeight] = animations[
           i + 1
         ];
@@ -176,21 +177,110 @@ export class SortingVisualizer extends Component {
       // }, ANIMATION_SPEED_MS * animations.length + 1 + i * 20);
     }
   }
+  // quickSort() {
+  //   // let pivotIndex = 0;
+
+  //   const animations = quickSortAnimations(this.state.array);
+  //   console.log(animations);
+  //   for (let i = 0; i < animations.length; i++) {
+  //     const arrayBars = document.getElementsByClassName("array-bar");
+  //     // arrayBars[pivotIndex].style.backgroundColor = FINAL_COLOR;
+  //     if (animations[i] !== -2) {
+  //       const [barOne, barTwo] = animations[i];
+  //       const barOneStyle = arrayBars[barOne].style;
+  //       const barTwoStyle = arrayBars[barTwo].style;
+  //       const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+  //       setTimeout(() => {
+  //         barOneStyle.backgroundColor = color;
+  //         barTwoStyle.backgroundColor = color;
+  //       }, i * ANIMATION_SPEED_MS + 10 * i);
+  //       //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
+  //       setTimeout(() => {
+  //         barOneStyle.backgroundColor = INITIAL_COLOR;
+  //         barTwoStyle.backgroundColor = INITIAL_COLOR;
+  //       }, i * ANIMATION_SPEED_MS + 50 + 10 * i);
+  //     } else {
+  //       //either swap or pivot change
+
+  //       const [barOne, barTwo, barOneHeight, barTwoHeight] = animations[i + 1];
+  //       if (barTwoHeight !== 0) {
+  //         //swap
+  //         const barOneStyle = arrayBars[barOne].style;
+  //         const barTwoStyle = arrayBars[barTwo].style;
+  //         setTimeout(() => {
+  //           barOneStyle.height = `${barTwoHeight}px`;
+  //           barOneStyle.backgroundColor = PRIMARY_COLOR;
+  //           barTwoStyle.height = `${barOneHeight}px`;
+  //           // barTwoStyle.backgroundColor = FINAL_COLOR;
+  //           barTwoStyle.backgroundColor = SECONDARY_COLOR;
+  //         }, i * ANIMATION_SPEED_MS + 10 * i);
+  //       } else {
+  //         const barOneStyle = arrayBars[barOne].style;
+  //         setTimeout(() => {
+  //           barOneStyle.backgroundColor = FINAL_COLOR;
+  //         }, i * ANIMATION_SPEED_MS + 10);
+  //         continue;
+  //         //pivot
+  //         // pivotIndex = barOne;
+  //         // arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
+  //         // setTimeout(() => {
+  //         //   arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
+  //         // }, i * ANIMATION_SPEED_MS + 10);
+  //       }
+  //     }
+  //   }
+  // }
+  //alternative for quickSort animations
+  //color of pivot is to be done
   quickSort() {
-    // // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    // let arr = [
-    //   [1, 2],
-    //   [3, 4],
-    //   [4, 5],
-    //   [6, 7],
-    //   [7, 8]
-    // ];
-    // // console.log(arr);
-    // for (let i = 0; i < arr.length; i++) {
-    //   // console.log(arr[i]);
-    //   const [one, two] = arr[i];
-    //   console.log(one, two);
-    // }
+    const animations = quickSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      if (animations[i] === -2) {
+        //pivot or swapping
+        const [barOne, barTwo, barOneHeight, barTwoHeight] = animations[i + 1];
+        if (barTwoHeight === 0) {
+          //pivot
+          // const barOneStyle = arrayBars[barOne].style;
+          // setInterval(() => {
+          //   barOneStyle.backgroundColor = FINAL_COLOR;
+          // }, i * ANIMATION_SPEED_MS + 12 * i);
+          // continue;
+        } else {
+          //swapping
+          const barOneStyle = arrayBars[barOne].style;
+          const barTwoStyle = arrayBars[barTwo].style;
+          setTimeout(() => {
+            barOneStyle.height = `${barTwoHeight}px`;
+            barOneStyle.backgroundColor = PRIMARY_COLOR;
+            barTwoStyle.height = `${barOneHeight}px`;
+            barTwoStyle.backgroundColor = SECONDARY_COLOR;
+          }, i * ANIMATION_SPEED_MS + 10 * i);
+        }
+      } else {
+        //traversing
+        const [barOne, barTwo] = animations[i];
+        const barOneStyle = arrayBars[barOne].style;
+        const barTwoStyle = arrayBars[barTwo].style;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS + 10 * i);
+        //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
+        setTimeout(() => {
+          barOneStyle.backgroundColor = INITIAL_COLOR;
+          barTwoStyle.backgroundColor = INITIAL_COLOR;
+        }, i * ANIMATION_SPEED_MS + 50 + 10 * i);
+      }
+    }
+    //for final pink color of the bars
+    const arrayBarsNew = document.getElementsByClassName("array-bar");
+    for (let i = 0; i < arrayBarsNew.length; i++) {
+      setTimeout(() => {
+        arrayBarsNew[i].style.backgroundColor = FINAL_COLOR;
+      }, animations.length * ANIMATION_SPEED_MS + 5 * i + 10 * animations.length);
+    }
   }
   render() {
     const { array } = this.state;
