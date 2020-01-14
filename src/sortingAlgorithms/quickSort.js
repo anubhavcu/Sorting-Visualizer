@@ -48,7 +48,7 @@ function quickSortHelper(array, startIndex, endIndex, animations) {
     quickSortHelper(array, startIndex, rightIndex - 1, animations);
   }
 }
-
+  
 function swap(i, j, array) {
   let temp = array[j];
   array[j] = array[i];

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSort";
 import { bubbleSortAnimations } from "../sortingAlgorithms/bubbleSort";
 import { quickSortAnimations } from "../sortingAlgorithms/quickSort";
+import { heapSortAnimations } from "../sortingAlgorithms/heapSort";
 // import { insertionSortAnimations } from "../sortingAlgorithms/insertionSort";
 import "./SortingVisualizer.css";
 
-const numberOfElementsInArray = 100;
+const numberOfElementsInArray = 175;
 
 const ANIMATION_SPEED_MS = 10;
 
@@ -24,14 +25,14 @@ export class SortingVisualizer extends Component {
     this.genRandomArray();
   }
 
-  resetColor() {
+  resetColor = () => {
     const arrayBars = document.getElementsByClassName("array-bar");
     for (let i = 0; i < arrayBars.length; i++) {
       arrayBars[i].style.backgroundColor = INITIAL_COLOR;
 
       // console.log(arrayBars[i].style.backgroundColor);
     }
-  }
+  };
   randomIntFromInterval = (min, max) =>
     Math.floor(Math.random() * (max - min + 1) + min);
   genRandomArray = () => {
@@ -75,7 +76,7 @@ export class SortingVisualizer extends Component {
   //     }
   //   }
   // }
-  mergeSort() {
+  mergeSort = () => {
     const animations = getMergeSortAnimations(this.state.array);
     // console.log(this.state.array);
     // console.log(animations);
@@ -117,7 +118,7 @@ export class SortingVisualizer extends Component {
       //   arrayBars1[i].style.backgroundColor = INITIAL_COLOR;
       // }, ANIMATION_SPEED_MS * animations.length + 1 + i * 12);
     }
-  }
+  };
 
   // finalAnimation() {
   //   this.resetColor();
@@ -131,7 +132,7 @@ export class SortingVisualizer extends Component {
   //   }
   // }
 
-  bubbleSort() {
+  bubbleSort = () => {
     const animations = bubbleSortAnimations(this.state.array);
 
     // console.log(animations);
@@ -176,7 +177,7 @@ export class SortingVisualizer extends Component {
       //   arrayBarsNew[i].style.backgroundColor = INITIAL_COLOR;
       // }, ANIMATION_SPEED_MS * animations.length + 1 + i * 20);
     }
-  }
+  };
   // quickSort() {
   //   // let pivotIndex = 0;
 
@@ -232,7 +233,7 @@ export class SortingVisualizer extends Component {
   // }
   //alternative for quickSort animations
   //color of pivot is to be done
-  quickSort() {
+  quickSort = () => {
     const animations = quickSortAnimations(this.state.array);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
@@ -281,7 +282,12 @@ export class SortingVisualizer extends Component {
         arrayBarsNew[i].style.backgroundColor = FINAL_COLOR;
       }, animations.length * ANIMATION_SPEED_MS + 5 * i + 10 * animations.length);
     }
-  }
+  };
+  heapSort = () => {
+    console.log(this.state.array);
+    const animations = heapSortAnimations(this.state.array);
+    console.log(animations);
+  };
   render() {
     const { array } = this.state;
     return (
@@ -332,7 +338,7 @@ export class SortingVisualizer extends Component {
           <button
             className="button"
             // className="btn btn-primary btn-sm m-2"
-            onClick={() => this.genRandomArray()}
+            onClick={() => this.heapSort()}
           >
             Heap Sort
           </button>
