@@ -1,5 +1,14 @@
+.navBar {
+  /* padding-bottom: 10px; */
+}
+.mainContent {
+  padding-top: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 30px;
+}
 .array-container {
-  position: absolute;
+  /* position: absolute; */
   left: 100px;
   top: 20px;
   background-color: ghostwhite;
@@ -17,8 +26,8 @@
   margin-left: 20px;
   margin-right: 20px; */
   margin: auto;
-  border-radius: 12px;
-  padding: 14px 40px;
+  border-radius: 18px;
+  padding: 14px 30px;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }

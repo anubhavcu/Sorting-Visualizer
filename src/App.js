@@ -8,7 +8,7 @@ import { heapSortAnimations } from "./sortingAlgorithms/heapSort";
 import "./components/SortingVisualizer.css";
 const numberOfElementsInArray = 175;
 
-const ANIMATION_SPEED_MS = 10;
+const ANIMATION_SPEED_MS = 5;
 
 const PRIMARY_COLOR = "green";
 
@@ -24,21 +24,21 @@ export class App extends Component {
     this.genRandomArray();
   }
 
-  resetColor = () => {
+  resetColor() {
     const arrayBars = document.getElementsByClassName("array-bar");
     for (let i = 0; i < arrayBars.length; i++) {
       arrayBars[i].style.backgroundColor = INITIAL_COLOR;
 
       // console.log(arrayBars[i].style.backgroundColor);
     }
-  };
+  }
   randomIntFromInterval = (min, max) =>
     Math.floor(Math.random() * (max - min + 1) + min);
   genRandomArray = () => {
     // document.querySelectorAll(".btn").forEach(elem => (elem.disabled = false));
     let array = [];
     for (let i = 0; i < numberOfElementsInArray; i++) {
-      array.push(this.randomIntFromInterval(10, 700));
+      array.push(this.randomIntFromInterval(10, 645));
     }
     // console.log(array);
     this.setState({ array: array });

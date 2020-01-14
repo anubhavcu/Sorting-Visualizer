@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-// import { insertionSortAnimations } from "../sortingAlgorithms/insertionSort";
 import "./SortingVisualizer.css";
 
 export class SortingVisualizer extends Component {
