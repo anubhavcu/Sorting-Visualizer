@@ -14,9 +14,10 @@ class NavBar extends Component {
           {/* <a href="https://google.com" target="blank">
             <img src="../../public/logo192.png" width="30" height="30" alt="" />
           </a> */}
-          <h1 className="text-white">
-            Sorting Visualizer{" "}
-            {/* <small
+          <div>
+            <h1 className="text-white">
+              Sorting Visualizer{" "}
+              {/* <small
               className="text-muted"
               className="h5"
               className="text-secondary"
@@ -26,11 +27,83 @@ class NavBar extends Component {
                 <small className="text-primary">Anubhav </small>
               </a>
             </small>{" "} */}
-          </h1>
-
+            </h1>
+          </div>
+          {/* <div className="form-group">
+            <label for="exampleFormControlSelect1" className="text-white">
+              Speed
+            </label>
+            <select
+              className="form-control"
+              className="d-inline-block"
+              id="exampleFormControlSelect1"
+            >
+              <option>x/4</option>
+              <option>x/2</option>
+              <option>x</option>
+              <option>2x</option>
+              <option>4x</option>
+            </select>
+          </div> */}
           <div
-          // className="buttons"
+            className="btn-toolbar"
+            role="toolbar"
+            aria-label="Toolbar with button groups"
           >
+            {/* <span className="badge badge-secondary" className="text-primary">
+              Speed/Bars
+            </span> */}
+            <div
+              className="btn-group mr-2"
+              role="group"
+              aria-label="First group"
+            >
+              <button
+                type="button"
+                className="btn btn-secondary"
+                disabled
+                title="Increase speed and decrease number of array-bars or vice-versa"
+              >
+                Speed
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary xByFour"
+                onClick={() => this.props.speedAndBars(-2)}
+              >
+                x/4
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary xByTwo"
+                onClick={() => this.props.speedAndBars(-1)}
+              >
+                x/2
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary x"
+                onClick={() => this.props.speedAndBars(1)}
+              >
+                x
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary xMultiplyTwo"
+                onClick={() => this.props.speedAndBars(2)}
+              >
+                2x
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary xMultiplyFour"
+                onClick={() => this.props.speedAndBars(3)}
+              >
+                4x
+              </button>
+            </div>
+          </div>
+          <div>
             <button
               className="btn btn-outline-danger m-2"
               // className="btn btn-primary btn-sm m-2"

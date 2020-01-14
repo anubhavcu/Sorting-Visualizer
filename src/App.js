@@ -6,9 +6,9 @@ import { bubbleSortAnimations } from "./sortingAlgorithms/bubbleSort";
 import { quickSortAnimations } from "./sortingAlgorithms/quickSort";
 import { heapSortAnimations } from "./sortingAlgorithms/heapSort";
 import "./components/SortingVisualizer.css";
-const numberOfElementsInArray = 175;
+const numberOfElementsInArray = 178;
 
-const ANIMATION_SPEED_MS = 5;
+let ANIMATION_SPEED_MS = 5;
 
 const PRIMARY_COLOR = "green";
 
@@ -19,6 +19,52 @@ const INITIAL_COLOR = "turquoise";
 export class App extends Component {
   state = {
     array: []
+  };
+  speedAndBars = x => {
+    // console.log(x);
+    if (x === 1) {
+      document.querySelector(".x").style.backgroundColor = "red";
+      document.querySelector(".xByFour").style.backgroundColor = "grey";
+      document.querySelector(".xByTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+      ANIMATION_SPEED_MS = 5;
+    } else if (x === 2) {
+      document.querySelector(".x").style.backgroundColor = "grey";
+      document.querySelector(".xByFour").style.backgroundColor = "grey";
+      document.querySelector(".xByTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "red";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+      ANIMATION_SPEED_MS = 4;
+    } else if (x === 3) {
+      document.querySelector(".x").style.backgroundColor = "grey";
+      document.querySelector(".xByFour").style.backgroundColor = "grey";
+      document.querySelector(".xByTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "red";
+      ANIMATION_SPEED_MS = 2;
+    } else if (x === -1) {
+      document.querySelector(".x").style.backgroundColor = "grey";
+      document.querySelector(".xByFour").style.backgroundColor = "grey";
+      document.querySelector(".xByTwo").style.backgroundColor = "red";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+      ANIMATION_SPEED_MS = 8;
+    } else if (x === -2) {
+      document.querySelector(".x").style.backgroundColor = "grey";
+      document.querySelector(".xByFour").style.backgroundColor = "red";
+      document.querySelector(".xByTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+      ANIMATION_SPEED_MS = 10;
+    } else {
+      document.querySelector(".x").style.backgroundColor = "red";
+      document.querySelector(".xByFour").style.backgroundColor = "grey";
+      document.querySelector(".xByTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+      ANIMATION_SPEED_MS = 10;
+    }
   };
   componentDidMount() {
     this.genRandomArray();
@@ -36,6 +82,12 @@ export class App extends Component {
     Math.floor(Math.random() * (max - min + 1) + min);
   genRandomArray = () => {
     // document.querySelectorAll(".btn").forEach(elem => (elem.disabled = false));
+    document.querySelector(".x").style.backgroundColor = "red";
+    document.querySelector(".xByFour").style.backgroundColor = "grey";
+    document.querySelector(".xByTwo").style.backgroundColor = "grey";
+    document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+    document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+
     let array = [];
     for (let i = 0; i < numberOfElementsInArray; i++) {
       array.push(this.randomIntFromInterval(10, 645));
@@ -76,6 +128,11 @@ export class App extends Component {
   //   }
   // }
   mergeSort = () => {
+    //disabling all buttons
+    const buttons = document.getElementsByClassName("btn");
+    for (let k = 0; k < buttons.length; k++) {
+      buttons[k].disabled = true;
+    }
     const animations = getMergeSortAnimations(this.state.array);
     // console.log(this.state.array);
     // console.log(animations);
@@ -111,6 +168,10 @@ export class App extends Component {
     for (let i = 0; i < arrayBars1.length; i++) {
       setTimeout(() => {
         arrayBars1[i].style.backgroundColor = "pink";
+        //re-enabling all the buttons
+        for (let k = 0; k < buttons.length; k++) {
+          buttons[k].disabled = false;
+        }
       }, ANIMATION_SPEED_MS * animations.length + 1 + i * 10);
       //optional for resetting original color of bars
       // setTimeout(() => {
@@ -132,6 +193,11 @@ export class App extends Component {
   // }
 
   bubbleSort = () => {
+    //disabling all buttons
+    const buttons = document.getElementsByClassName("btn");
+    for (let k = 0; k < buttons.length; k++) {
+      buttons[k].disabled = true;
+    }
     const animations = bubbleSortAnimations(this.state.array);
 
     // console.log(animations);
@@ -170,6 +236,10 @@ export class App extends Component {
     for (let i = 0; i < arrayBarsNew.length; i++) {
       setTimeout(() => {
         arrayBarsNew[i].style.backgroundColor = "pink";
+        //re-enabling all the buttons
+        for (let k = 0; k < buttons.length; k++) {
+          buttons[k].disabled = false;
+        }
       }, ANIMATION_SPEED_MS * animations.length + 1 + i * 10);
       //optional for resetting original color of the array bars
       // setTimeout(() => {
@@ -233,6 +303,11 @@ export class App extends Component {
   //alternative for quickSort animations
   //color of pivot is to be done
   quickSort = () => {
+    //disabling all buttons
+    const buttons = document.getElementsByClassName("btn");
+    for (let k = 0; k < buttons.length; k++) {
+      buttons[k].disabled = true;
+    }
     const animations = quickSortAnimations(this.state.array);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
@@ -279,13 +354,22 @@ export class App extends Component {
     for (let i = 0; i < arrayBarsNew.length; i++) {
       setTimeout(() => {
         arrayBarsNew[i].style.backgroundColor = FINAL_COLOR;
+        //re-enabling all the buttons
+        for (let k = 0; k < buttons.length; k++) {
+          buttons[k].disabled = false;
+        }
       }, animations.length * ANIMATION_SPEED_MS + 5 * i + 10 * animations.length);
     }
   };
   heapSort = () => {
-    console.log(this.state.array);
-    const animations = heapSortAnimations(this.state.array);
-    console.log(animations);
+    //disabling all buttons
+    // const buttons = document.getElementsByClassName("btn");
+    // for (let k = 0; k < buttons.length; k++) {
+    //   buttons[k].disabled = true;
+    // }
+    // console.log(this.state.array);
+    // const animations = heapSortAnimations(this.state.array);
+    // console.log(animations);
   };
   render() {
     return (
@@ -298,6 +382,7 @@ export class App extends Component {
             quickSort={this.quickSort}
             heapSort={this.heapSort}
             array={this.state.array}
+            speedAndBars={this.speedAndBars}
           />
         </div>
         <div className="mainContent">
@@ -307,8 +392,8 @@ export class App extends Component {
           />
         </div>
         <div>
-          <footer class="page-footer navbar-fixed-bottom font-small special-color-dark bg-dark  ">
-            <div class="footer-copyright text-center text-white">
+          <footer className="page-footer fixed-bottom font-small special-color-dark bg-dark  ">
+            <div className="footer-copyright text-center text-white">
               © 2020 Copyright:
               <a href="https://anubhavcu.github.io/portfolio/" target="blank">
                 {" "}
