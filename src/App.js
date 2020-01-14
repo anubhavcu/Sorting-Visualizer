@@ -306,6 +306,17 @@ export class App extends Component {
             INITIAL_COLOR={this.INITIAL_COLOR}
           />
         </div>
+        <div>
+          <footer class="page-footer navbar-fixed-bottom font-small special-color-dark bg-dark  ">
+            <div class="footer-copyright text-center text-white">
+              © 2020 Copyright:
+              <a href="https://anubhavcu.github.io/portfolio/" target="blank">
+                {" "}
+                <span className="badge badge-primary"> Anubhav Srivastava</span>
+              </a>
+            </div>
+          </footer>
+        </div>
       </div>
     );
   }
