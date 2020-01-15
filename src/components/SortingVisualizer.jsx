@@ -3,8 +3,12 @@ import React, { Component } from "react";
 import "./SortingVisualizer.css";
 
 export class SortingVisualizer extends Component {
+  // componentDidMount() {
+  //   // this.props.speedAndBars();
+  // }
   render() {
     // const { array } = this.state;
+
     return (
       // <div>
       <div className="array-container">
@@ -14,6 +18,7 @@ export class SortingVisualizer extends Component {
             key={index}
             style={{
               height: `${value}px`,
+              // width: this.props.width,
               // backgroundColor: INITIAL_COLOR
               backgroundColor: "turquoise"
             }}

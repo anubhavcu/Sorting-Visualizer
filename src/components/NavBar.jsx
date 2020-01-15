@@ -15,44 +15,14 @@ class NavBar extends Component {
             <img src="../../public/logo192.png" width="30" height="30" alt="" />
           </a> */}
           <div>
-            <h1 className="text-white">
-              Sorting Visualizer{" "}
-              {/* <small
-              className="text-muted"
-              className="h5"
-              className="text-secondary"
-            >
-              made by{" "}
-              <a href="https://anubhavcu.github.io/portfolio" target="blank">
-                <small className="text-primary">Anubhav </small>
-              </a>
-            </small>{" "} */}
-            </h1>
+            <h1 className="text-white">Sorting Visualizer </h1>
           </div>
-          {/* <div className="form-group">
-            <label for="exampleFormControlSelect1" className="text-white">
-              Speed
-            </label>
-            <select
-              className="form-control"
-              className="d-inline-block"
-              id="exampleFormControlSelect1"
-            >
-              <option>x/4</option>
-              <option>x/2</option>
-              <option>x</option>
-              <option>2x</option>
-              <option>4x</option>
-            </select>
-          </div> */}
+
           <div
             className="btn-toolbar"
             role="toolbar"
             aria-label="Toolbar with button groups"
           >
-            {/* <span className="badge badge-secondary" className="text-primary">
-              Speed/Bars
-            </span> */}
             <div
               className="btn-group mr-2"
               role="group"
@@ -97,7 +67,9 @@ class NavBar extends Component {
               <button
                 type="button"
                 className="btn btn-secondary xMultiplyFour"
-                onClick={() => this.props.speedAndBars(3)}
+                onClick={() => {
+                  this.props.speedAndBars(3);
+                }}
               >
                 4x
               </button>
@@ -109,7 +81,7 @@ class NavBar extends Component {
               // className="btn btn-primary btn-sm m-2"
               onClick={() => {
                 // disabled = true;
-                this.props.genRandomArray();
+                this.props.genRandomArray(178, 1, false);
               }}
               // disabled={true}
             >
@@ -146,7 +118,7 @@ class NavBar extends Component {
             <button
               className="btn btn-outline-primary"
               // className="btn btn-primary btn-sm m-2"
-              onClick={() => this.props.genRandomArray()}
+              onClick={() => this.props.genRandomArray(178, 1, false)}
             >
               Insertion Sort
             </button>

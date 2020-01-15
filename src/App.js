@@ -6,94 +6,134 @@ import { bubbleSortAnimations } from "./sortingAlgorithms/bubbleSort";
 import { quickSortAnimations } from "./sortingAlgorithms/quickSort";
 import { heapSortAnimations } from "./sortingAlgorithms/heapSort";
 import "./components/SortingVisualizer.css";
-const numberOfElementsInArray = 178;
+// let numberOfElementsInArray = 178;
 
 let ANIMATION_SPEED_MS = 5;
-
 const PRIMARY_COLOR = "green";
 
 const SECONDARY_COLOR = "red";
 
 const FINAL_COLOR = "pink";
 const INITIAL_COLOR = "turquoise";
+
 export class App extends Component {
   state = {
     array: []
   };
   speedAndBars = x => {
-    // console.log(x);
     if (x === 1) {
+      this.genRandomArray(178, 1, true);
+    } else if (x === 2) {
+      this.genRandomArray(225, 2, true);
+    } else if (x === 3) {
+      this.genRandomArray(300, 3, true);
+    } else if (x === -1) {
+      this.genRandomArray(125, -1, true);
+    } else if (x === -2) {
+      this.genRandomArray(80, -2, true);
+    }
+  };
+  componentDidMount = () => {
+    this.genRandomArray(178, 1, false);
+  };
+
+  resetColor = () => {
+    const arrayBars = document.getElementsByClassName("array-bar");
+    for (let i = 0; i < arrayBars.length; i++) {
+      arrayBars[i].style.backgroundColor = INITIAL_COLOR;
+    }
+  };
+  randomIntFromInterval = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
+  //sppedLog basically checks who is calling the functions- speed buttons or generateNew Array button
+  //**setState is an asynchronous function, so to get current array bars with class of array-bar we have used an async function*/
+  updateBarsState = width => {
+    // this.setState({ array: array });
+    let arrayBars = [];
+    async function something() {
+      const a = new Promise((res, rej) => {
+        const arrayBars = document.getElementsByClassName("array-bar");
+        res(arrayBars);
+      });
+      const newArrayBars = await a;
+      arrayBars = newArrayBars;
+      for (let k = 0; k < arrayBars.length; k++) {
+        arrayBars[k].style.width = `${width}px`;
+      }
+      // console.log(newArrayBars.length);
+      // console.log(arrayBars.length);
+    }
+    something();
+  };
+  genRandomArray = (numberOfArrayBars, number, speedLog) => {
+    if (number === 1) {
+      let array = [];
+      for (let i = 0; i < numberOfArrayBars; i++) {
+        array.push(this.randomIntFromInterval(10, 645));
+      }
       document.querySelector(".x").style.backgroundColor = "red";
       document.querySelector(".xByFour").style.backgroundColor = "grey";
       document.querySelector(".xByTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
       ANIMATION_SPEED_MS = 5;
-    } else if (x === 2) {
+      this.setState({ array: array });
+      //if we have called arrayBars with className 'array-bar', we wouldn't get the current clicked speed/bar button but the previous selection as setState is an asynchrnous so it doesn't update instantly, so we created seperate function for handling async function and get current state of the arrayBars
+      this.updateBarsState(6);
+    } else if (number === 2) {
+      let array = [];
+      for (let i = 0; i < numberOfArrayBars; i++) {
+        array.push(this.randomIntFromInterval(10, 645));
+      }
       document.querySelector(".x").style.backgroundColor = "grey";
       document.querySelector(".xByFour").style.backgroundColor = "grey";
       document.querySelector(".xByTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyTwo").style.backgroundColor = "red";
       document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
       ANIMATION_SPEED_MS = 4;
-    } else if (x === 3) {
+      this.setState({ array: array });
+      this.updateBarsState(4.3);
+    } else if (number === 3) {
+      let array = [];
+      for (let i = 0; i < numberOfArrayBars; i++) {
+        array.push(this.randomIntFromInterval(10, 645));
+      }
       document.querySelector(".x").style.backgroundColor = "grey";
       document.querySelector(".xByFour").style.backgroundColor = "grey";
       document.querySelector(".xByTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyFour").style.backgroundColor = "red";
       ANIMATION_SPEED_MS = 2;
-    } else if (x === -1) {
+      this.setState({ array: array });
+      this.updateBarsState(2.75);
+    } else if (number === -1) {
+      let array = [];
+      for (let i = 0; i < numberOfArrayBars; i++) {
+        array.push(this.randomIntFromInterval(10, 645));
+      }
+
       document.querySelector(".x").style.backgroundColor = "grey";
       document.querySelector(".xByFour").style.backgroundColor = "grey";
       document.querySelector(".xByTwo").style.backgroundColor = "red";
       document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
       ANIMATION_SPEED_MS = 8;
-    } else if (x === -2) {
+      this.setState({ array: array });
+      this.updateBarsState(9.5);
+    } else if (number === -2) {
+      let array = [];
+      for (let i = 0; i < numberOfArrayBars; i++) {
+        array.push(this.randomIntFromInterval(10, 645));
+      }
       document.querySelector(".x").style.backgroundColor = "grey";
       document.querySelector(".xByFour").style.backgroundColor = "red";
       document.querySelector(".xByTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
       document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
-      ANIMATION_SPEED_MS = 10;
-    } else {
-      document.querySelector(".x").style.backgroundColor = "red";
-      document.querySelector(".xByFour").style.backgroundColor = "grey";
-      document.querySelector(".xByTwo").style.backgroundColor = "grey";
-      document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
-      document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
-      ANIMATION_SPEED_MS = 10;
+      ANIMATION_SPEED_MS = 50;
+      this.setState({ array: array });
+      this.updateBarsState(16);
     }
-  };
-  componentDidMount() {
-    this.genRandomArray();
-  }
-
-  resetColor() {
-    const arrayBars = document.getElementsByClassName("array-bar");
-    for (let i = 0; i < arrayBars.length; i++) {
-      arrayBars[i].style.backgroundColor = INITIAL_COLOR;
-
-      // console.log(arrayBars[i].style.backgroundColor);
-    }
-  }
-  randomIntFromInterval = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1) + min);
-  genRandomArray = () => {
-    // document.querySelectorAll(".btn").forEach(elem => (elem.disabled = false));
-    document.querySelector(".x").style.backgroundColor = "red";
-    document.querySelector(".xByFour").style.backgroundColor = "grey";
-    document.querySelector(".xByTwo").style.backgroundColor = "grey";
-    document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
-    document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
-
-    let array = [];
-    for (let i = 0; i < numberOfElementsInArray; i++) {
-      array.push(this.randomIntFromInterval(10, 645));
-    }
-    // console.log(array);
-    this.setState({ array: array });
     this.resetColor();
   };
 
@@ -389,6 +429,7 @@ export class App extends Component {
           <SortingVisualizer
             array={this.state.array}
             INITIAL_COLOR={this.INITIAL_COLOR}
+            // speedAndBars={this.speedAndBars}
           />
         </div>
         <div>
