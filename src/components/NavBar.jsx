@@ -31,7 +31,7 @@ class NavBar extends Component {
               <button
                 type="button"
                 className="btn btn-secondary"
-                disabled
+                // disabled
                 title="Increase speed and decrease number of array-bars or vice-versa"
               >
                 Speed
@@ -126,6 +126,7 @@ class NavBar extends Component {
               Heap Sort
             </button>
             <button
+              disabled="true"
               className="btn btn-outline-primary"
               // className="btn btn-primary btn-sm m-2"
               title="Time(worst)-O(n^2)||Time(best)-O(n)||Space-O(1)"

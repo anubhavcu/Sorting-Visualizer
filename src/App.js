@@ -403,12 +403,70 @@ export class App extends Component {
   };
   heapSort = () => {
     //disabling all buttons
-    // const buttons = document.getElementsByClassName("btn");
-    // for (let k = 0; k < buttons.length; k++) {
-    //   buttons[k].disabled = true;
-    // }
-    // console.log(this.state.array);
-    // const animations = heapSortAnimations(this.state.array);
+    const buttons = document.getElementsByClassName("btn");
+    for (let k = 0; k < buttons.length; k++) {
+      buttons[k].disabled = true;
+    }
+    const animations = heapSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const [barOneIndex, barTwoIndex, barOneHeight, barTwoHeight] = animations[
+        i
+      ];
+      const barOneStyle = arrayBars[barOneIndex].style;
+      const barTwoStyle = arrayBars[barTwoIndex].style;
+      if (barOneHeight < 0) {
+        //traversing
+        const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          // barOneStyle.backgroundColor = color;
+          // barTwoStyle.backgroundColor = color;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
+        }, i * ANIMATION_SPEED_MS);
+        //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
+        setTimeout(() => {
+          barOneStyle.backgroundColor = INITIAL_COLOR;
+          barTwoStyle.backgroundColor = INITIAL_COLOR;
+        }, i * ANIMATION_SPEED_MS + 10);
+      } else {
+        //swapping
+        setTimeout(() => {
+          barOneStyle.height = `${barTwoHeight}px`;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.height = `${barOneHeight}px`;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
+          // barTwoStyle.backgroundColor = FINAL_COLOR;
+        }, i * ANIMATION_SPEED_MS);
+        //extra
+        setTimeout(() => {
+          barOneStyle.backgroundColor = INITIAL_COLOR;
+          barTwoStyle.backgroundColor = INITIAL_COLOR;
+        }, i * ANIMATION_SPEED_MS + 20);
+        if (barOneIndex === 0)
+          //for final color of last bar
+          setTimeout(() => {
+            // barOneStyle.backgroundColor = INITIAL_COLOR;
+            // barTwoStyle.backgroundColor = SECONDARY_COLOR;
+            barTwoStyle.backgroundColor = FINAL_COLOR;
+          }, i * ANIMATION_SPEED_MS + 20);
+      }
+      // setTimeout(() => {
+      //   arrayBars[0].style.backgroundColor = FINAL_COLOR;
+      // }, i * ANIMATION_SPEED_MS + 1000);
+    }
+    //for final pink color of the bars
+    const arrayBarsNew = document.getElementsByClassName("array-bar");
+    for (let i = 0; i < arrayBarsNew.length; i++) {
+      setTimeout(() => {
+        arrayBarsNew[i].style.backgroundColor = FINAL_COLOR;
+        //re-enabling all the buttons
+        for (let k = 0; k < buttons.length; k++) {
+          buttons[k].disabled = false;
+        }
+      }, animations.length * ANIMATION_SPEED_MS + ANIMATION_SPEED_MS * 10);
+    }
+
     // console.log(animations);
   };
   render() {
