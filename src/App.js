@@ -5,6 +5,7 @@ import { getMergeSortAnimations } from "./sortingAlgorithms/mergeSort";
 import { bubbleSortAnimations } from "./sortingAlgorithms/bubbleSort";
 import { quickSortAnimations } from "./sortingAlgorithms/quickSort";
 import { heapSortAnimations } from "./sortingAlgorithms/heapSort";
+import { insertionSortAnimations } from "./sortingAlgorithms/insertionSort";
 import "./components/SortingVisualizer.css";
 // let numberOfElementsInArray = 178;
 
@@ -247,10 +248,12 @@ export class App extends Component {
         const [barOneIndex, barTwoIndex] = animations[i];
         const barOneStyle = arrayBars[barOneIndex].style;
         const barTwoStyle = arrayBars[barTwoIndex].style;
-        const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        // const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
         setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
+          // barOneStyle.backgroundColor = color;
+          // barTwoStyle.backgroundColor = color;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
         }, i * ANIMATION_SPEED_MS);
         //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
         setTimeout(() => {
@@ -287,60 +290,7 @@ export class App extends Component {
       // }, ANIMATION_SPEED_MS * animations.length + 1 + i * 20);
     }
   };
-  // quickSort() {
-  //   // let pivotIndex = 0;
 
-  //   const animations = quickSortAnimations(this.state.array);
-  //   console.log(animations);
-  //   for (let i = 0; i < animations.length; i++) {
-  //     const arrayBars = document.getElementsByClassName("array-bar");
-  //     // arrayBars[pivotIndex].style.backgroundColor = FINAL_COLOR;
-  //     if (animations[i] !== -2) {
-  //       const [barOne, barTwo] = animations[i];
-  //       const barOneStyle = arrayBars[barOne].style;
-  //       const barTwoStyle = arrayBars[barTwo].style;
-  //       const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
-  //       setTimeout(() => {
-  //         barOneStyle.backgroundColor = color;
-  //         barTwoStyle.backgroundColor = color;
-  //       }, i * ANIMATION_SPEED_MS + 10 * i);
-  //       //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
-  //       setTimeout(() => {
-  //         barOneStyle.backgroundColor = INITIAL_COLOR;
-  //         barTwoStyle.backgroundColor = INITIAL_COLOR;
-  //       }, i * ANIMATION_SPEED_MS + 50 + 10 * i);
-  //     } else {
-  //       //either swap or pivot change
-
-  //       const [barOne, barTwo, barOneHeight, barTwoHeight] = animations[i + 1];
-  //       if (barTwoHeight !== 0) {
-  //         //swap
-  //         const barOneStyle = arrayBars[barOne].style;
-  //         const barTwoStyle = arrayBars[barTwo].style;
-  //         setTimeout(() => {
-  //           barOneStyle.height = `${barTwoHeight}px`;
-  //           barOneStyle.backgroundColor = PRIMARY_COLOR;
-  //           barTwoStyle.height = `${barOneHeight}px`;
-  //           // barTwoStyle.backgroundColor = FINAL_COLOR;
-  //           barTwoStyle.backgroundColor = SECONDARY_COLOR;
-  //         }, i * ANIMATION_SPEED_MS + 10 * i);
-  //       } else {
-  //         const barOneStyle = arrayBars[barOne].style;
-  //         setTimeout(() => {
-  //           barOneStyle.backgroundColor = FINAL_COLOR;
-  //         }, i * ANIMATION_SPEED_MS + 10);
-  //         continue;
-  //         //pivot
-  //         // pivotIndex = barOne;
-  //         // arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
-  //         // setTimeout(() => {
-  //         //   arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
-  //         // }, i * ANIMATION_SPEED_MS + 10);
-  //       }
-  //     }
-  //   }
-  // }
-  //alternative for quickSort animations
   //color of pivot is to be done
   quickSort = () => {
     //disabling all buttons
@@ -417,7 +367,7 @@ export class App extends Component {
       const barTwoStyle = arrayBars[barTwoIndex].style;
       if (barOneHeight < 0) {
         //traversing
-        const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        // const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
         setTimeout(() => {
           // barOneStyle.backgroundColor = color;
           // barTwoStyle.backgroundColor = color;
@@ -469,6 +419,72 @@ export class App extends Component {
 
     // console.log(animations);
   };
+  insertionSort = () => {
+    //disabling all buttons
+    const buttons = document.getElementsByClassName("btn");
+    for (let k = 0; k < buttons.length; k++) {
+      buttons[k].disabled = true;
+    }
+    const animations = insertionSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const [barOneIndex, barTwoIndex, barOneHeight, barTwoHeight] = animations[
+        i
+      ];
+      const barOneStyle = arrayBars[barOneIndex].style;
+      const barTwoStyle = arrayBars[barTwoIndex].style;
+      if (barOneHeight < 0) {
+        // console.log("traversing");
+        //traversing
+        // const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          // barOneStyle.backgroundColor = color;
+          // barTwoStyle.backgroundColor = color;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
+        }, i * ANIMATION_SPEED_MS);
+        //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
+        setTimeout(() => {
+          barOneStyle.backgroundColor = INITIAL_COLOR;
+          barTwoStyle.backgroundColor = INITIAL_COLOR;
+        }, i * ANIMATION_SPEED_MS + 10);
+      } else {
+        //swapping
+        // console.log("swapping");
+        setTimeout(() => {
+          barOneStyle.height = `${barTwoHeight}px`;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.height = `${barOneHeight}px`;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
+          // barTwoStyle.backgroundColor = FINAL_COLOR;
+        }, i * ANIMATION_SPEED_MS);
+        //extra
+        setTimeout(() => {
+          barOneStyle.backgroundColor = INITIAL_COLOR;
+          barTwoStyle.backgroundColor = INITIAL_COLOR;
+        }, i * ANIMATION_SPEED_MS + 20);
+        if (barOneIndex === 0)
+          //for final color of last bar
+          setTimeout(() => {
+            // barOneStyle.backgroundColor = INITIAL_COLOR;
+            // barTwoStyle.backgroundColor = SECONDARY_COLOR;
+            barTwoStyle.backgroundColor = FINAL_COLOR;
+          }, i * ANIMATION_SPEED_MS + 20);
+      }
+    }
+    // console.log(animations);
+    //for final pink color of the bars
+    const arrayBarsNew = document.getElementsByClassName("array-bar");
+    for (let i = 0; i < arrayBarsNew.length; i++) {
+      setTimeout(() => {
+        arrayBarsNew[i].style.backgroundColor = FINAL_COLOR;
+        //re-enabling all the buttons
+        for (let k = 0; k < buttons.length; k++) {
+          buttons[k].disabled = false;
+        }
+      }, animations.length * ANIMATION_SPEED_MS + ANIMATION_SPEED_MS * 10);
+    }
+  };
   render() {
     return (
       <div>
@@ -479,6 +495,7 @@ export class App extends Component {
             bubbleSort={this.bubbleSort}
             quickSort={this.quickSort}
             heapSort={this.heapSort}
+            insertionSort={this.insertionSort}
             array={this.state.array}
             speedAndBars={this.speedAndBars}
           />
@@ -507,3 +524,58 @@ export class App extends Component {
 }
 
 export default App;
+
+//alternative for quickSort animations
+// quickSort() {
+//   // let pivotIndex = 0;
+
+//   const animations = quickSortAnimations(this.state.array);
+//   console.log(animations);
+//   for (let i = 0; i < animations.length; i++) {
+//     const arrayBars = document.getElementsByClassName("array-bar");
+//     // arrayBars[pivotIndex].style.backgroundColor = FINAL_COLOR;
+//     if (animations[i] !== -2) {
+//       const [barOne, barTwo] = animations[i];
+//       const barOneStyle = arrayBars[barOne].style;
+//       const barTwoStyle = arrayBars[barTwo].style;
+//       const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+//       setTimeout(() => {
+//         barOneStyle.backgroundColor = color;
+//         barTwoStyle.backgroundColor = color;
+//       }, i * ANIMATION_SPEED_MS + 10 * i);
+//       //below setTimeOut is to persist the initial color of the bars while moving(to change color of comparing values and resetting them back) (last bar will remain PRIMARY_COLOR )
+//       setTimeout(() => {
+//         barOneStyle.backgroundColor = INITIAL_COLOR;
+//         barTwoStyle.backgroundColor = INITIAL_COLOR;
+//       }, i * ANIMATION_SPEED_MS + 50 + 10 * i);
+//     } else {
+//       //either swap or pivot change
+
+//       const [barOne, barTwo, barOneHeight, barTwoHeight] = animations[i + 1];
+//       if (barTwoHeight !== 0) {
+//         //swap
+//         const barOneStyle = arrayBars[barOne].style;
+//         const barTwoStyle = arrayBars[barTwo].style;
+//         setTimeout(() => {
+//           barOneStyle.height = `${barTwoHeight}px`;
+//           barOneStyle.backgroundColor = PRIMARY_COLOR;
+//           barTwoStyle.height = `${barOneHeight}px`;
+//           // barTwoStyle.backgroundColor = FINAL_COLOR;
+//           barTwoStyle.backgroundColor = SECONDARY_COLOR;
+//         }, i * ANIMATION_SPEED_MS + 10 * i);
+//       } else {
+//         const barOneStyle = arrayBars[barOne].style;
+//         setTimeout(() => {
+//           barOneStyle.backgroundColor = FINAL_COLOR;
+//         }, i * ANIMATION_SPEED_MS + 10);
+//         continue;
+//         //pivot
+//         // pivotIndex = barOne;
+//         // arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
+//         // setTimeout(() => {
+//         //   arrayBars[barOne].style.backgroundColor = FINAL_COLOR;
+//         // }, i * ANIMATION_SPEED_MS + 10);
+//       }
+//     }
+//   }
+// }

@@ -126,11 +126,12 @@ class NavBar extends Component {
               Heap Sort
             </button>
             <button
-              disabled="true"
+              // disabled="true"
               className="btn btn-outline-primary"
               // className="btn btn-primary btn-sm m-2"
               title="Time(worst)-O(n^2)||Time(best)-O(n)||Space-O(1)"
-              onClick={() => this.props.genRandomArray(178, 1, false)}
+              // onClick={() => this.props.genRandomArray(178, 1, false)}
+              onClick={() => this.props.insertionSort()}
             >
               Insertion Sort
             </button>
