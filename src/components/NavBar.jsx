@@ -87,11 +87,23 @@ class NavBar extends Component {
               title="Generate a new random array"
               onClick={() => {
                 // disabled = true;
+                this.props.genReverseArray(178);
+              }}
+              // disabled={true}
+            >
+              Reverse Array!
+            </button>
+            <button
+              className="btn btn-outline-danger m-2"
+              // className="btn btn-primary btn-sm m-2"
+              title="Generate a new random array"
+              onClick={() => {
+                // disabled = true;
                 this.props.genRandomArray(178, 1, false);
               }}
               // disabled={true}
             >
-              Generate New Array
+              Generate Random Array
             </button>
             <button
               className="btn btn-outline-primary m-2"

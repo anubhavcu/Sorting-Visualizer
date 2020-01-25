@@ -137,6 +137,26 @@ export class App extends Component {
     }
     this.resetColor();
   };
+  genReverseArray = numberOfArrayBars => {
+    let array = [];
+    for (let i = 0; i < numberOfArrayBars; i++) {
+      array.push(this.randomIntFromInterval(10, 645));
+    }
+    console.log(array);
+    array.sort((a, b) => b - a);
+    // let newArray = array.reverse();
+    console.log(array);
+
+    document.querySelector(".x").style.backgroundColor = "red";
+    document.querySelector(".xByFour").style.backgroundColor = "grey";
+    document.querySelector(".xByTwo").style.backgroundColor = "grey";
+    document.querySelector(".xMultiplyTwo").style.backgroundColor = "grey";
+    document.querySelector(".xMultiplyFour").style.backgroundColor = "grey";
+    ANIMATION_SPEED_MS = 5;
+    this.setState({ array: array });
+    this.updateBarsState(6);
+    this.resetColor();
+  };
 
   // insertionSort() {
   //   // const [animations1, animations2] = insertionSortAnimations(
@@ -491,6 +511,7 @@ export class App extends Component {
         <div className="navBar">
           <NavBar
             genRandomArray={this.genRandomArray}
+            genReverseArray={this.genReverseArray}
             mergeSort={this.mergeSort}
             bubbleSort={this.bubbleSort}
             quickSort={this.quickSort}
