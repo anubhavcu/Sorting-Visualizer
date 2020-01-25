@@ -291,7 +291,7 @@ export class App extends Component {
           barOneStyle.height = `${barTwoHeight}px`;
           barTwoStyle.height = `${barOneHeight}px`;
           // barTwoStyle.backgroundColor = FINAL_COLOR;
-        }, i * ANIMATION_SPEED_MS);
+        }, i * ANIMATION_SPEED_MS + 40);
       }
     }
     //for final pink colors of the array bars
@@ -326,10 +326,15 @@ export class App extends Component {
         const [barOne, barTwo, barOneHeight, barTwoHeight] = animations[i + 1];
         if (barTwoHeight === 0) {
           //pivot
-          // const barOneStyle = arrayBars[barOne].style;
+          // let barOneStyle = arrayBars[barOne].style;
+          // x = barOne;
+          // // barOneStyle.backgroundColor = FINAL_COLOR;
           // setInterval(() => {
           //   barOneStyle.backgroundColor = FINAL_COLOR;
-          // }, i * ANIMATION_SPEED_MS + 12 * i);
+          // }, i * ANIMATION_SPEED_MS + 15 * i);
+          // setTimeout(() => {
+          //   barOneStyle.backgroundColor = INITIAL_COLOR;
+          // }, i * ANIMATION_SPEED_MS + 10);
           // continue;
         } else {
           //swapping
@@ -359,6 +364,7 @@ export class App extends Component {
         }, i * ANIMATION_SPEED_MS + 50 + 10 * i);
       }
     }
+
     //for final pink color of the bars
     const arrayBarsNew = document.getElementsByClassName("array-bar");
     for (let i = 0; i < arrayBarsNew.length; i++) {
