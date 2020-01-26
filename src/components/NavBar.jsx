@@ -8,18 +8,17 @@ class NavBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav className="navbar navbar-dark bg-dark mb-3">
+        <nav className="navbar navbar-dark bg-dark mb-3 mw-100">
           {/* <nav className="navbar navbar-light bg-light mb-3"> */}
           {/* icon not working */}
           {/* <a href="https://google.com" target="blank">
             <img src="../../public/logo192.png" width="30" height="30" alt="" />
           </a> */}
-          <div>
-            <a href=".">
-              <h1 className="text-white">Sorting Visualizer </h1>
-            </a>
-          </div>
-
+          {/* <div> */}
+          <a href=".">
+            <h3 className="text-white">Sorting Visualizer </h3>
+          </a>
+          {/* </div> */}
           <div
             className="btn-toolbar"
             role="toolbar"
@@ -84,31 +83,31 @@ class NavBar extends Component {
           </div>
           <div>
             <button
-              className="btn btn-outline-danger m-1"
+              className="btn btn-outline-danger m-1 btn-sm"
               // className="btn btn-primary btn-sm m-2"
               title="Generate a new random array"
               onClick={() => {
                 // disabled = true;
-                this.props.genReverseArray(178);
+                this.props.genReverseArray(153);
               }}
               // disabled={true}
             >
               Reverse Array!
             </button>
             <button
-              className="btn btn-outline-danger m-1"
+              className="btn btn-outline-danger m-1 btn-sm"
               // className="btn btn-primary btn-sm m-2"
               title="Generate a new random array"
               onClick={() => {
                 // disabled = true;
-                this.props.genRandomArray(178, 1, false);
+                this.props.genRandomArray(153, 1, false);
               }}
               // disabled={true}
             >
               Generate Random Array
             </button>
             <button
-              className="btn btn-outline-primary m-1"
+              className="btn btn-outline-primary m-1 btn-sm"
               title="Time- O(nlog(n)) & Space-O(n)"
               // className="btn btn-primary btn-sm m-2"
               onClick={() => this.props.mergeSort()}
@@ -116,7 +115,7 @@ class NavBar extends Component {
               Merge Sort
             </button>
             <button
-              className="btn btn-outline-primary m-1"
+              className="btn btn-outline-primary m-1 btn-sm"
               title="Time(worst)-O(n^2)||Time(best)-O(n)||Space-O(1)"
               // className="btn btn-primary btn-sm m-2"
               onClick={() => this.props.bubbleSort()}
@@ -124,7 +123,7 @@ class NavBar extends Component {
               Bubble Sort
             </button>
             <button
-              className="btn btn-outline-primary m-1"
+              className="btn btn-outline-primary m-1 btn-sm"
               // className="btn btn-primary btn-sm m-2"
               title="Time(worst)-O(n^2)||Time(best)-O(nlog(n))||Space-O(log(n))"
               onClick={() => this.props.quickSort()}
@@ -132,7 +131,7 @@ class NavBar extends Component {
               Quick Sort
             </button>
             <button
-              className="btn btn-outline-primary m-1"
+              className="btn btn-outline-primary m-1 btn-sm"
               // className="btn btn-primary btn-sm m-2"
               title="Time-O(nlog(n))||Space-O(1)"
               onClick={() => this.props.heapSort()}
@@ -141,7 +140,7 @@ class NavBar extends Component {
             </button>
             <button
               // disabled="true"
-              className="btn btn-outline-primary m-1"
+              className="btn btn-outline-primary m-1 btn-sm"
               // className="btn btn-primary btn-sm m-2"
               title="Time(worst)-O(n^2)||Time(best)-O(n)||Space-O(1)"
               // onClick={() => this.props.genRandomArray(178, 1, false)}

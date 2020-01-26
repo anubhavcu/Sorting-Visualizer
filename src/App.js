@@ -23,19 +23,19 @@ export class App extends Component {
   };
   speedAndBars = x => {
     if (x === 1) {
-      this.genRandomArray(178, 1, true);
+      this.genRandomArray(153, 1, true);
     } else if (x === 2) {
-      this.genRandomArray(225, 2, true);
+      this.genRandomArray(200, 2, true);
     } else if (x === 3) {
-      this.genRandomArray(300, 3, true);
+      this.genRandomArray(275, 3, true);
     } else if (x === -1) {
-      this.genRandomArray(125, -1, true);
+      this.genRandomArray(100, -1, true);
     } else if (x === -2) {
-      this.genRandomArray(80, -2, true);
+      this.genRandomArray(55, -2, true);
     }
   };
   componentDidMount = () => {
-    this.genRandomArray(178, 1, false);
+    this.genRandomArray(153, 1, false);
   };
 
   resetColor = () => {
@@ -67,6 +67,11 @@ export class App extends Component {
     something();
   };
   genRandomArray = (numberOfArrayBars, number, speedLog) => {
+    // console.log("height ", window.innerHeight);
+    // console.log("width ", window.innerWidth);
+    // if (window.innerWidth >= 1400) {
+    //   numberOfArrayBars -= 20;
+    // }
     if (number === 1) {
       let array = [];
       for (let i = 0; i < numberOfArrayBars; i++) {
